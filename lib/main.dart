@@ -48,6 +48,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
+  void deactivate(){
+    super.deactivate();
+    print("MyHomePage deactivate()");
+  }
+
+  @override
   void dispose() {
     super.dispose();
     print("MyHomePage dispose()");
@@ -100,6 +106,11 @@ void printMessage() {
   void initState() {
     super.initState();
     print("MyRootPage initState()");
+  }
+@override
+  void deactivate(){
+    super.deactivate();
+    print("MyRootPage deactivate()");
   }
 
   @override
