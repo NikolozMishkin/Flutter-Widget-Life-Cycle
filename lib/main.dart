@@ -149,3 +149,15 @@ void printMessage() {
   }
 }
 
+
+
+List<MySuperGlobalGeneric> myfunction<MySuperGlobalGeneric extends IsSilly>(List<MySuperGlobalGeneric> l){
+  for (final e in l){
+    e.makePeopleLaugh();
+  } 
+  return l;
+}
+
+abstract class IsSilly {
+  void makePeopleLaugh();
+}
