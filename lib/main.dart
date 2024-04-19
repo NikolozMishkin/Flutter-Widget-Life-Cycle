@@ -15,22 +15,29 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class  MyHomePage extends StatefulWidget {
+  final String mySuperParametre;
+  const MyHomePage({super.key,required this.mySuperParametre});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MyHomePageState createState() {
     print("MyHomePage createState()");
     return _MyHomePageState();
   }
 
+
+
   void didChangeDependencies() {
     print("MyHomePage didChangeDependencies()");
   }
+
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   String message = '';
+
+  
 
   void printMessage() {
     setState(() {
@@ -53,8 +60,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void didUpdateWidget(covariant MyHomePage oldWidget) {
-    super.didUpdateWidget(oldWidget);
     print("MyHomePage didUpdateWidget()");
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -136,8 +143,8 @@ class _MyRootPageState extends State<MyRootPage> {
 
   @override
   void didUpdateWidget(covariant MyRootPage oldWidget) {
-    super.didUpdateWidget(oldWidget);
     print("MyRootPage didUpdateWidget()");
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -157,7 +164,8 @@ class _MyRootPageState extends State<MyRootPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (showHome) const MyHomePage(),
+             MyHomePage(mySuperParametre:(showHome)?'key1':'key2',
+             key: Key("asdadad"),),
             IconButton(
               onPressed: printMessage,
               icon: const Icon(Icons.code_off),
