@@ -11,7 +11,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: MyRootPage(),
-
     );
   }
 }
@@ -20,9 +19,13 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
   @override
-  _MyHomePageState createState(){
+  _MyHomePageState createState() {
     print("MyHomePage createState()");
     return _MyHomePageState();
+  }
+
+  void didChangeDependencies() {
+    print("MyHomePage didChangeDependencies()");
   }
 }
 
@@ -31,14 +34,21 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void printMessage() {
     setState(() {
-      message = 'Hello'; 
+      message = 'Hello';
+      print("MyHomePage setState()");
     });
   }
-  
+
   @override
   void initState() {
     super.initState();
     print("MyHomePage initState()");
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    print("MyHomePage didChangeDependencies()");
   }
 
   @override
@@ -48,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
-  void deactivate(){
+  void deactivate() {
     super.deactivate();
     print("MyHomePage deactivate()");
   }
@@ -58,25 +68,25 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
     print("MyHomePage dispose()");
   }
-  
+
   @override
   Widget build(BuildContext context) {
     print("MyHomePage build()");
     return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              message, 
-              style: const TextStyle(fontSize: 24),
-            ),
-            IconButton(
-              onPressed: printMessage,
-              icon: const Icon(Icons.loop),
-            ),
-          ],
-        ),
-      );
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            message,
+            style: const TextStyle(fontSize: 24),
+          ),
+          IconButton(
+            onPressed: printMessage,
+            icon: const Icon(Icons.loop),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -84,21 +94,25 @@ class MyRootPage extends StatefulWidget {
   const MyRootPage({Key? key}) : super(key: key);
 
   @override
-  _MyRootPageState createState(){
+  _MyRootPageState createState() {
     print("MyRootPage createState()");
     return _MyRootPageState();
+  }
+
+  void didChangeDependencies() {
+    print("MyRootPage didChangeDependencies()");
   }
 }
 
 class _MyRootPageState extends State<MyRootPage> {
-bool showHome = false;
-String message = '';
+  bool showHome = false;
+  String message = '';
 
-
-void printMessage() {
+  void printMessage() {
     setState(() {
-      message = 'Hello'; 
+      message = 'Hello';
       showHome = !showHome;
+      print("MyRootPage setState()");
     });
   }
 
@@ -107,8 +121,15 @@ void printMessage() {
     super.initState();
     print("MyRootPage initState()");
   }
-@override
-  void deactivate(){
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    print("MyRootPage didChangeDependencies()");
+  }
+
+  @override
+  void deactivate() {
     super.deactivate();
     print("MyRootPage deactivate()");
   }
@@ -124,7 +145,7 @@ void printMessage() {
     super.dispose();
     print("MyRootPage dispose()");
   }
-  
+
   @override
   Widget build(BuildContext context) {
     print("MyRootPage build()");
@@ -136,8 +157,7 @@ void printMessage() {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (showHome)
-            const MyHomePage(),
+            if (showHome) const MyHomePage(),
             IconButton(
               onPressed: printMessage,
               icon: const Icon(Icons.code_off),
@@ -148,6 +168,7 @@ void printMessage() {
     );
   }
 }
+
 
 
 
